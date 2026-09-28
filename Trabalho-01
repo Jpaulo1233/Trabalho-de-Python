@@ -1,0 +1,144 @@
+class Estatisticas:
+  def __init__(self, rating, hs):
+    self._rating = rating		# _rating representa a pontuação do jogador na partida
+    self._hs = hs			# _hs representa a porcentagem de tiros na cabeça (Headshot)
+
+  @property
+  def rating(self):
+    return self._rating
+
+  @property
+  def hs(self):
+    return self._hs
+
+  @rating.setter
+  def rating(self, rating):
+    self._rating = rating
+
+  @hs.setter
+  def hs(self, hs):
+    self._hs = hs
+
+class Armamento:
+  def __init__(self, arma_primaria, arma_secundaria):
+    self._arma_primaria = arma_primaria			# _arma_primaria representa o nome da arma principal que o jogador está usando na rodada (ex: AWP, AK-47)
+    self._arma_secundaria = arma_secundaria		# _arma_secundaria representa o nome da arma secundária que o jogador está usando na rodada (ex: USP-S, Glock-18)
+
+  @property
+  def arma_primaria(self):
+    return self._arma_primaria
+
+  @property
+  def arma_secundaria(self):
+    return self._arma_secundaria
+
+  @arma_primaria.setter
+  def arma_primaria(self, arma_primaria):
+    self._arma_primaria = arma_primaria
+
+  @arma_secundaria.setter
+  def arma_secundaria(self, arma_secundaria):
+    self._arma_secundaria = arma_secundaria
+
+class Jogador:
+  def __init__(self, nick, funcao, armamento, estatisticas):
+    self._nick = nick	# _nick representa o nome do jogador dentro do jogo
+    self._funcao = funcao # _funcao armazena o papel do jogador no time (ex: IGL, Entry Fragger, AWPer, Lurker)
+    self._armamento = armamento	# _armamento representa as armas e equipamentos do jogador
+    self._estatisticas = estatisticas	# _estatisticas representa os números de desempenho do jogador
+
+  @property
+  def nick(self):
+    return self._nick
+
+  @property
+  def funcao(self):
+    return self._funcao
+
+  @property
+  def armamento(self):
+    return self._armamento
+
+  @property
+  def estatisticas(self):
+    return self._estatisticas
+
+  @nick.setter
+  def nick(self, nick):
+    self._nick = nick
+
+  @funcao.setter
+  def funcao(self, funcao):
+    self._funcao = funcao
+
+  @armamento.setter
+  def armamento(self, armamento):
+    self._armamento = armamento
+
+  @estatisticas.setter
+  def estatisticas(self, estatisticas):
+    self._estatisticas = estatisticas
+
+class Equipe:
+  def __init__(self, nome, vitorias, jogador):
+    self._nome = nome		# _nome representa o nome do time de CS2
+    self._vitorias = vitorias		# _vitorias representa o número de partidas ganhas pelo time
+    self._jogador = jogador		# _jogador representa um jogador de destaque que faz parte do time
+
+  @property
+  def nome(self):
+    return self._nome
+
+  @property
+  def vitorias(self):
+    return self._vitorias
+
+  @property
+  def jogador(self):
+    return self._jogador
+
+  @nome.setter
+  def nome(self, nome):
+    self._nome = nome
+
+  @vitorias.setter
+  def vitorias(self, vitorias):
+    self._vitorias = vitorias
+
+  @jogador.setter
+  def jogador(self, jogador):
+    self._jogador = jogador
+
+  def mostrar(self):
+    print('=============================================')
+    print('          DADOS DA EQUIPE DE CS              ')
+    print('=============================================')
+    print('Time:', self.nome)
+    print('Vitórias:', self.vitorias)
+    print('\n--- Jogador em Destaque ---')
+    print('Nick:', self.jogador.nick)
+    print('Função:', self.jogador.funcao)
+    print('\n  [Armamento e Economia na Rodada]')
+    print('Arma Principal:', self.jogador.armamento.arma_primaria)
+    print('Arma Secundária:', self.jogador.armamento.arma_secundaria)
+    print('\n  [Estatísticas de Carreira]')
+    print('Rating:', self.jogador.estatisticas.rating)
+    print('HS:', self.jogador.estatisticas.hs)
+    print()
+
+# principal
+estatisticas = Estatisticas(1.41, 52.4)
+armamento = Armamento('AK-47','Glock-18')
+jogador = Jogador('donk', 'Entry Fragger', armamento, estatisticas)
+equipe = Equipe('Team Spirit', 20, jogador)
+equipe.mostrar()
+
+equipe.nome = 'Vitality'
+equipe.vitorias = 35
+jogador.nick = 'ZywOo'
+jogador.funcao = 'AWPer'
+armamento.arma_primaria = 'AWP'
+armamento.arma_secundaria = 'USP-S'
+estatisticas.rating = 1.32
+estatisticas.hs = 41.5
+equipe.mostrar()
